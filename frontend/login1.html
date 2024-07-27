@@ -1,0 +1,67 @@
+<!-- BACKEND FILE:{users-mongo} -> sample.js -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    emailId<input type="text" id="a"><br><br>
+    password<input type="password" id="b"><br><br>
+    <button type="button" id="c" onclick="Login()">LOGIN</button>
+    <script>
+ async function Login() {
+    try {
+        const emailId = document.getElementById('a').value;
+        const password = document.getElementById('b').value;
+
+        const res = await fetch('http://localhost:3000/validate-user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "emailId": emailId,
+                "password": password
+            })
+        });
+
+        if (res.status === 200) {
+            const data = await res.json();
+            if (data.status === 'success') {
+                window.location.href = 'display1.html'; // Redirect only if user exists and credentials are correct
+            } else {
+                alert("User does not exist or invalid credentials"); // User does not exist or invalid credentials
+            }
+        } else {
+            alert('Invalid EmailId or password: ' + res.status);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred, please try again later.');
+    }
+}
+
+
+
+
+
+
+
+
+        async function getuser(){
+    try{
+    const res=await fetch('http://localhost:3000/get-user')
+    const data=await res.json();
+    console.log(data)
+}
+catch(error){
+    console.log(error);
+}
+}
+
+        getuser();
+    </script>
+</body>
+</html>

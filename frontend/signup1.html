@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    Email Id:<input type="email" id="a"><br><br>
+    Password:<input type="password" id="b"><br><br>
+    <script>
+        alert("SIGN UP FIRST") //steps is displayed
+    </script>
+    <button type="button" id="c" onclick="add()">SignUp</button>
+     <!-- <a href="login1.html"><button type="button" id="d">Login</button></a>  -->
+   
+   <script>
+
+async function getuser(){
+    try{
+    const res=await fetch('http://localhost:3000/get-user')
+    const data=await res.json();
+    console.log(data)
+}
+catch(error){
+    console.log(error);
+}
+}
+
+getuser();
+
+
+
+async function add(){
+    try{
+        const emailId=document.getElementById('a').value
+        const password=document.getElementById('b').value
+        const res=await fetch('http://localhost:3000/add-user',{
+            method:"POST",
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify({
+                "emailId":emailId,
+                "password":password
+            })
+        })
+    if(res.ok){
+        window.location.href='display1.html'
+    }
+        else{
+            alert('user already exists.Try different username and password')
+        }
+    }
+    catch(error){
+    res.status(501).json({
+        "message":error
+    })
+}
+}
+
+   
+   </script>
+</body>
+</html>
