@@ -1,19 +1,18 @@
+require('dotenv').config();
 const bodyparser=require('body-parser')
 const express=require('express')
 const cors=require('cors')
 const mongoose=require('mongoose')
-
 const{Login}=require('./sample(schema).js')
 const app=express()
 app.use(bodyparser.json())
 app.use(cors())
-
 async function connecttodb(){
     try{
-        await mongoose.connect('mongodb+srv://sanjay:sanjay29@sanjay.z0v9yfy.mongodb.net/SAMPLE?retryWrites=true&w=majority&appName=sanjay')
-        app.listen(3000,function(){
+        await mongoose.connect(process.env.MONGODB_CONNECT_URI)
+       //app.listen(process.env.MONGODB_CONNECT_URI,function(){
             console.log('Listening to 3000');
-        })
+       // })
     }
     catch(error){
          console.log(error);   
@@ -87,4 +86,8 @@ app.post('/validate-user', async function(req, res) {
         });
     }
 });
+// const PORT=process.env.PORT
+//  app.listen(PORT,()=>{
+//     console.log('Listening to 8080');
+//      })
 //npx nodemon sample.js
