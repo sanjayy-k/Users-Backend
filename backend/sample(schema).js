@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+mongoose.set('strictQuery', false);
 const UserLogin=new mongoose.Schema({
     emailId:{
         type:String
