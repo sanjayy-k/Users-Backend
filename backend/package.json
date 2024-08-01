@@ -4,6 +4,7 @@
   "description": "",
   "main": "sample(schema).js",
   "scripts": {
+    "start":"node sample.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
