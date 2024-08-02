@@ -16,7 +16,7 @@
         const emailId = document.getElementById('a').value;
         const password = document.getElementById('b').value;
 
-        const res = await fetch('http://localhost:3000/validate-user', {
+        const res = await fetch('https://users-backend-0ljr.onrender.com/validate-user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,7 +52,7 @@
 
         async function getuser(){
     try{
-    const res=await fetch('http://localhost:3000/get-user')
+    const res=await fetch('https://users-backend-0ljr.onrender.com/get-user')
     const data=await res.json();
     console.log(data)
 }
