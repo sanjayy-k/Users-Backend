@@ -86,8 +86,8 @@ app.post('/validate-user', async function(req, res) {
         });
     }
 });
-// const PORT=process.env.PORT
-//  app.listen(PORT,()=>{
-//     console.log('Listening to 8080');
-//      })
+ const PORT=process.env.PORT
+ app.listen(PORT,()=>{
+     console.log('Listening to 8080');
+      })
 //npx nodemon sample.js
